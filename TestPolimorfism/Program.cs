@@ -1,2 +1,24 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+
+using TestPolimorfism;
+using TestPolimorfism.desen_geometric;
+
+Dreptunghi a=new Dreptunghi();
+
+Console.WriteLine(a.afisare());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
