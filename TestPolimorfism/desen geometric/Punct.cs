@@ -47,9 +47,9 @@ namespace TestPolimorfism
 
         public override string afisare()
         {
-            string text = "Afisare punctului\n";
+            string text = "--AFISARE PUNCT--\n";
 
-            text+="x="+this.x+" y"+this.y;
+            text+="x="+this.x+" y="+this.y+"\n";
 
             return text;
         }
@@ -66,14 +66,13 @@ namespace TestPolimorfism
 
         public override void translateYX(int x, int y)
         {
-            this.x=x;
-            this.y=y;
+            this.x+=x;
+            this.y+=y;
         }
 
-        public override Figura duplicare(Figura a)
+        public override Figura duplicare()
         {
-            Punct punct = a as Punct;
-            return new Punct(punct.x, punct.y);
+            return new Punct(this.x, this.y);
         }
 
 

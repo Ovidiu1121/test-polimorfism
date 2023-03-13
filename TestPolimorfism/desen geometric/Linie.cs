@@ -23,14 +23,6 @@ namespace TestPolimorfism.desen_geometric
             this.a=a;
             this.b=b;
         }
-        
-        public Linie(string prop)
-        {
-            string[] a = prop.Split(",");
-
-            this.a=new Punct(double.Parse(a[2]), double.Parse(a[3]));
-            this.b=new Punct(double.Parse(a[4]), double.Parse(a[5])); 
-        }
 
         public Punct A
         {
@@ -46,9 +38,12 @@ namespace TestPolimorfism.desen_geometric
 
         public override string afisare()
         {
-            string text = "Afisare linie\n";
+            string text = "--AFISARE LINIE--\nLinia este formata din\n";
 
-            text+=this.a+"+"+this.b;
+            Punct p1 = a;
+            Punct p2 = b;
+
+            text+="punct 1: ("+p1.X+","+p1.Y+")"+"\npunct 2: ("+p2.X+","+p2.Y+")\n";
 
             return text;
 
@@ -56,29 +51,26 @@ namespace TestPolimorfism.desen_geometric
 
         public override void translateX(int x)
         {
-            this.a.X=x;
-            this.b.X=x;
+            base.translateX(x);
         }
 
         public override void translateY(int y)
         {
-            this.a.Y=y;
-            this.b.Y=y;
-        }
-
-        public override Figura duplicare(Figura f)
-        {
-            Linie linie = f as Linie;
-            return new Linie(linie.a,linie.b);
+            base.translateY(y);
         }
 
         public override void translateYX(int x, int y)
         {
-            this.a.X=x;
-            this.a.Y=y;
-            this.b.X=x;
-            this.b.Y=y;
+            base.translateYX(x, y);
         }
+
+        public override Figura duplicare()
+        {
+          
+            return new Linie(this.a,this.b);
+        }
+
+        
 
     }
 }

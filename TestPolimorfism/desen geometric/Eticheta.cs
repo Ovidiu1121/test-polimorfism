@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestPolimorfism.desen_geometric
 {
-    public class Eticheta:Figura
+    public class Eticheta:Dreptunghi
     {
-
-        private Dreptunghi a;
+       
         private string text;
 
         public Eticheta()
@@ -17,24 +16,14 @@ namespace TestPolimorfism.desen_geometric
 
         }
 
-        public Eticheta(Dreptunghi a,string text)
+        public Eticheta(Linie linie1,Linie linie2 ,string textEticheta):base(linie1, linie2)
         {
-            this.a = a;
-            this.text = text;
+            this.text = textEticheta;
         }
 
-        public Eticheta(string prop)
+        public Eticheta(string text)
         {
-            string[] a = prop.Split(",");
-
-            this.a= new Dreptunghi(new Punct(int.Parse(a[17]), int.Parse(a[18])), new Punct(int.Parse(a[19]), int.Parse(a[20])));
-            this.text=a[21];
-        }
-
-        public Dreptunghi A
-        {
-            get { return this.a; }
-            set { this.a = value; }
+            this.text=text;
         }
 
         public string Text
@@ -45,9 +34,9 @@ namespace TestPolimorfism.desen_geometric
 
         public override string afisare()
         {
-            string t = "afisare eticheta\n";
+            string t = "--AFISARE ETICHETA--\n";
 
-            t+=this.a+" "+this.text;
+            t+=this.text+"\n";
 
             return t;
 
@@ -55,29 +44,22 @@ namespace TestPolimorfism.desen_geometric
 
         public override void translateX(int x)
         {
-            this.a.A.X = x;
-            this.a.B.X = x;
+            base.translateX(x);
         }
 
         public override void translateY(int y)
         {
-            this.a.A.Y = y;
-            this.a.B.Y = y;
+            base.translateY(y);
         }
 
         public override void translateYX(int x, int y)
         {
-            this.a.A.X = x;
-            this.a.A.Y = y;
-            this.a.B.X = x;
-            this.a.B.Y = y;
+            base.translateYX(x, y);
         }
 
-        public override Figura duplicare(Figura a)
+        public override Figura duplicare()
         {
-            Eticheta eticheta = a as Eticheta;
-
-            return new Eticheta(eticheta.a, eticheta.text);
+            return new Eticheta(this.text);
         }
 
 

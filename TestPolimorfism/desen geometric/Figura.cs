@@ -28,11 +28,11 @@ namespace TestPolimorfism.desen_geometric
             Console.WriteLine("SUNT IN TRANSLATE X SI Y DIN BAZA");
         }
 
-        public virtual Figura duplicare(Figura a)
+        public virtual Figura duplicare()
         {
             Console.WriteLine("SUNT IN DUPLICARE DIN BAZA");
-            
-            return a;
+
+            return this;
         }
 
     }

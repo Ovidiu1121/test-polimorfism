@@ -9,7 +9,7 @@ namespace TestPolimorfism.desen_geometric
     public class Cerc:Figura
     {
 
-        private Punct a;
+        
         private Punct b;
         private Linie c;
 
@@ -18,26 +18,10 @@ namespace TestPolimorfism.desen_geometric
 
         }
 
-        public Cerc(Punct a,Punct b,Linie c):base()
+        public Cerc(Punct b,Linie c)
         {
-            this.a = a;
             this.b = b;
             this.c = c;
-        }
-
-        public Cerc(string prop)
-        {
-            string[] a = prop.Split(",");
-
-            this.a=new Punct(double.Parse(a[5]), double.Parse(a[6]));
-            this.b=new Punct(double.Parse(a[7]), double.Parse(a[8]));
-            this.c=new Linie(new Punct(double.Parse(a[9]), double.Parse(a[10])),new Punct(double.Parse(a[11]), double.Parse(a[12])));
-        }
-
-        public Punct A
-        {
-            get { return this.a; }
-            set { this.a = value; }
         }
 
         public Punct B
@@ -54,39 +38,37 @@ namespace TestPolimorfism.desen_geometric
 
         public override string afisare()
         {
-            string text = "Afisare cerc\n";
+            string text = "--AFISARE CERC--\nCercul este format din\n";
 
-            text+=this.a+"+"+this.b+"\n";
-            text+=this.c;
+            Punct p = b;
+            Linie l = c;
+
+            text+="punct: ("+p.X+","+p.Y+")\n"+"linie: punct 1 ("+l.A.X+","+l.A.Y+"), punct 2: ("+l.B.X+","+l.B.Y+")\n";
 
             return text;
         }
 
         public override void translateX(int x)
         {
-            this.a.X=x;
-            this.b.X=x;
+            base.translateX(x);
         }
 
         public override void translateY(int y)
         {
-            this.a.Y=y;
-            this.b.Y=y;
-        }
-
-        public override Figura duplicare(Figura f)
-        {
-            Cerc cerc = f as Cerc;
-            return new Cerc(cerc.a,cerc.b,cerc.c);
+            base.translateY(y);
         }
 
         public override void translateYX(int x, int y)
         {
-            this.a.X=x;
-            this.a.Y=y;
-            this.b.X=x;
-            this.b.Y=y;
+            base.translateYX(x, y);
         }
+
+        public override Figura duplicare()
+        {
+            return new Cerc(this.b,this.c);
+        }
+
+      
 
     }
 }

@@ -9,45 +9,41 @@ namespace TestPolimorfism.desen_geometric
     public class Dreptunghi:Figura
     {
 
-        private Punct a;
-        private Punct b;
+        private Linie linie1;
+        private Linie linie2;
 
         public Dreptunghi()
         {
 
         }
 
-        public Dreptunghi(Punct a, Punct b)
+        public Dreptunghi(Linie linie1, Linie linie2)
         {
-            this.a=a;
-            this.b=b;
+            this.linie1=linie1;
+            this.linie2=linie2;
         }
 
-        public Dreptunghi(string prop)
+        public Linie Linie1
         {
-            string[] a = prop.Split(",");
-
-            this.a=new Punct(double.Parse(a[13]), double.Parse(a[14]));
-            this.b=new Punct(double.Parse(a[15]), double.Parse(a[16]));
+            get { return this.linie1; }
+            set { this.linie1 = value; }
         }
 
-        public Punct A
+        public Linie Linie2
         {
-            get { return this.a; }
-            set { this.a = value; }
-        }
-
-        public Punct B
-        {
-            get { return this.b; }
-            set { this.b = value; }
+            get { return this.linie2; }
+            set { this.linie2 = value; }
         }
 
         public override string afisare()
         {
-            string text = "Afisare dreptunghi\n";
+            string text = "--AFISARE DREPTUNGHI--\nDreptunghiul este format din\n";
 
-            text+=this.a+"+"+this.b;
+            Linie l1 = linie1; 
+            Linie l2 = linie2;
+
+            text+="linie 1: punct 1 ("+l1.A.X+","+l1.A.Y+"), punct 2: ("+l1.B.X+","+l1.B.Y+")\n";
+            text+="linie 2: punct 2 ("+l2.A.X+","+l2.A.Y+"), punct 2: ("+l2.B.X+","+l2.B.Y+")\n";
 
             return text;
 
@@ -55,30 +51,25 @@ namespace TestPolimorfism.desen_geometric
 
         public override void translateX(int x)
         {
-            this.a.X=x;
-            this.b.X=x;
+            base.translateX(x);
         }
 
         public override void translateY(int y)
         {
-            this.a.Y=y;
-            this.b.Y=y;
-        }
-
-        public override Figura duplicare(Figura f)
-        {
-            Dreptunghi dreptunghi = f as Dreptunghi;
-            return new Dreptunghi(dreptunghi.a, dreptunghi.b);
+            base.translateY(y);
         }
 
         public override void translateYX(int x, int y)
         {
-            this.a.X=x;
-            this.a.Y=y;
-            this.b.X=x;
-            this.b.Y=y;
+            base.translateYX(x, y);
         }
 
+        public override Figura duplicare()
+        {
+            return new Dreptunghi(this.linie1, this.linie2);
+        }
+
+        
 
 
     }
